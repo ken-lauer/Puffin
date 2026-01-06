@@ -129,13 +129,13 @@ inputfile = 'mydist.pufin'
 f = open(inputfile, 'w')
 f.write('Puffin dist file\n')
 f.write('\n')
-f.write('ipts = '  + '{:<10d}'.format(nslices)  + 'Dz2 = '  + \
-      '{:<24.15E}'.format(dz2) + 'aw = '  + '{:<24.15E}'.format(puffVars.aw) + \
-      'lambdaw = '  + '{:<24.15E}'.format(puffVars.lw) + \
-      'lambdar = '  + '{:<24.15E}'.format(puffVars.lr) +  '\n')
-f.write('rho = '  + '{:<24.15E}'.format(puffVars.rho) +  \
-        'sigx1D = '  + '{:<24.15E}'.format(sigx1D) +  \
-        'sigy1D = '  + '{:<24.15E}'.format(sigy1D) + '\n') #rho =     8.332324e-003  sigx1D =     0.0677  sigy1D =     0.0677
+f.write('ipts = '  + f'{nslices:<10d}'  + 'Dz2 = '  + \
+      f'{dz2:<24.15E}' + 'aw = '  + f'{puffVars.aw:<24.15E}' + \
+      'lambdaw = '  + f'{puffVars.lw:<24.15E}' + \
+      'lambdar = '  + f'{puffVars.lr:<24.15E}' +  '\n')
+f.write('rho = '  + f'{puffVars.rho:<24.15E}' +  \
+        'sigx1D = '  + f'{sigx1D:<24.15E}' +  \
+        'sigy1D = '  + f'{sigy1D:<24.15E}' + '\n') #rho =     8.332324e-003  sigx1D =     0.0677  sigy1D =     0.0677
 f.write('\n')
 f.write('       z2           gamma          x_bar          y_bar        sig_x_bar      sig_y_bar        px_bar         py_bar    \n')
 f.write(' sig_gamma_tot    sig_px_bar     sig_py_bar         Ne         emit_barL   \n')
@@ -143,15 +143,15 @@ f.write('-----------------------------------------------------------------------
 
 
 for ix in arange(0,nslices):
-    f.write( '{:<24.15E}'.format(z2pos[ix]) + '{:<24.15E}'.format(gammam[ix]) \
-    + '{:<24.15E}'.format(xm[ix]) + '{:<24.15E}'.format(ym[ix]) \
-    + '{:<24.15E}'.format(xsig[ix]) + '{:<24.15E}'.format(ysig[ix]) \
-    + '{:<24.15E}'.format(pxm[ix]) + '{:<24.15E}'.format(pym[ix]) + '\n')
+    f.write( f'{z2pos[ix]:<24.15E}' + f'{gammam[ix]:<24.15E}' \
+    + f'{xm[ix]:<24.15E}' + f'{ym[ix]:<24.15E}' \
+    + f'{xsig[ix]:<24.15E}' + f'{ysig[ix]:<24.15E}' \
+    + f'{pxm[ix]:<24.15E}' + f'{pym[ix]:<24.15E}' + '\n')
     
 #      '       z2           gamma          x_bar          y_bar        sig_x_bar      sig_y_bar        px_bar         py_bar    \n')
-    f.write('{:<24.15E}'.format(gammasig[ix]) + '{:<24.15E}'.format(pxsig[ix]) \
-    + '{:<24.15E}'.format(pysig[ix]) + '{:<24.15E}'.format(Ne[ix]) \
-    + '{:<24.15E}'.format(emitbar[ix]) + '\n') 
+    f.write(f'{gammasig[ix]:<24.15E}' + f'{pxsig[ix]:<24.15E}' \
+    + f'{pysig[ix]:<24.15E}' + f'{Ne[ix]:<24.15E}' \
+    + f'{emitbar[ix]:<24.15E}' + '\n') 
     
 #       sig_gamma_tot    sig_px_bar     sig_py_bar         Ne         emit_barL   \n')
 #write data

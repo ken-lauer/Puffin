@@ -13,9 +13,9 @@ from numpy import pi
 from numpy import arange
 import matplotlib.pyplot as plt
 import tables
-from puffdata import fdata
-from puffdata import puffData
-from retrieve import getPow
+from .puffdata import fdata
+from .puffdata import puffData
+from .retrieve import getPow
 
 # can maybe use argparse for more complex plotting options...
 

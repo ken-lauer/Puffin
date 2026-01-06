@@ -12,9 +12,9 @@ import numpy as np
 from numpy import arange
 import matplotlib.pyplot as plt
 import tables
-from retrieve import getIntData
-from puffdata import fdata
-from puffdata import puffData
+from .retrieve import getIntData
+from .puffdata import fdata
+from .puffdata import puffData
 
 iTemporal = 0
 iPeriodic = 1

@@ -37,8 +37,8 @@ def readField(h5fname, f1D = 0, xn = None, yn = None):
         if (f1D == 0):
             xf = h5f.root.aperp[:, :, :, 0]
         else:
-            print(xn, yn)
-            print(shape(h5f.root.aperp))
+            print((xn, yn))
+            print((shape(h5f.root.aperp)))
             xf = h5f.root.aperp[xn, yn, :, 0]
     # xfs = xf[z2si:z2ei]   # for selecting slice...
 

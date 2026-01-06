@@ -8,7 +8,7 @@ import numpy,sys,tables,re
 c=2.998e8
 ifn=sys.argv[1]
 print("reading in "+str(ifn))
-ifh=open(ifn,'r')
+ifh=open(ifn)
 inDataAsText=ifh.read()
 #numPtcls=inDataAsText.count('\n')
 ptclStrings=inDataAsText.split('\n')
@@ -16,7 +16,7 @@ pdata=numpy.zeros((len(ptclStrings),6))
 failIndices=[]
 for ptclIndex in range(0,len(ptclStrings)):
   try:
-    pdata[ptclIndex,:]=numpy.array((re.split("\s+",ptclStrings[ptclIndex])[0:6])).astype(numpy.float)    
+    pdata[ptclIndex,:]=numpy.array(re.split(r"\s+",ptclStrings[ptclIndex])[0:6]).astype(numpy.float)    
   except:
     print("Problem allocating data to array, expect due to lack of data in row")
     failIndices.append(ptclIndex)

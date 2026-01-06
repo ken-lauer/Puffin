@@ -75,8 +75,8 @@ def writeChargeOutput1D(histdata,edgedata,ptcldata,dataname,dumpno=0,fileextname
   h5out.create_group('/','globalLimits')
   h5out.root.globalLimits._v_attrs['vsType']="limits"
   h5out.root.globalLimits._v_attrs['vsKind']="Cartesian"
-  h5out.root.globalLimits._v_attrs['vsLowerBounds']=numpy.array((lb[2]))
-  h5out.root.globalLimits._v_attrs['vsUpperBounds']=numpy.array((ub[2]))
+  h5out.root.globalLimits._v_attrs['vsLowerBounds']=numpy.array(lb[2])
+  h5out.root.globalLimits._v_attrs['vsUpperBounds']=numpy.array(ub[2])
   h5out.create_group('/','time')
   h5out.root.time._v_attrs['vsStep']=numpy.int(dumpno)
   h5out.root.time._v_attrs['vsTime']=numpy.double(simtime)
@@ -87,10 +87,10 @@ def writeChargeOutput1D(histdata,edgedata,ptcldata,dataname,dumpno=0,fileextname
   h5out.root.mesh._v_attrs['vsCentering']="zonal"
 #  h5out.root.mesh._v_attrs['vsLowerBounds']=numpy.array((numpy.min(ptcldata[:,2])))
 #  h5out.root.mesh._v_attrs['vsUpperBounds']=numpy.array((numpy.max(ptcldata[:,2])))
-  h5out.root.mesh._v_attrs['vsLowerBounds']=numpy.array((lb[2]))
-  h5out.root.mesh._v_attrs['vsUpperBounds']=numpy.array((ub[2]))
-  h5out.root.mesh._v_attrs['vsNumCells']=numpy.array((numpy.int(len(edgedata)-1)))
-  h5out.root.mesh._v_attrs['vsStartCell']=numpy.array((numpy.int(0)))
+  h5out.root.mesh._v_attrs['vsLowerBounds']=numpy.array(lb[2])
+  h5out.root.mesh._v_attrs['vsUpperBounds']=numpy.array(ub[2])
+  h5out.root.mesh._v_attrs['vsNumCells']=numpy.array(numpy.int(len(edgedata)-1))
+  h5out.root.mesh._v_attrs['vsStartCell']=numpy.array(numpy.int(0))
   h5out.flush()
   h5out.close()
 

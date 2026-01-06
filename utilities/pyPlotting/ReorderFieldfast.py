@@ -187,5 +187,5 @@ for iname in filelist:
 
 end=time.time()
 
-print('time', end-start)
+print(('time', end-start))
 

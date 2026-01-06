@@ -10,10 +10,10 @@ import sys, glob, os
 import numpy as np
 import tables
 from numpy import arange
-from retrieve import readField
-from retrieve import filterField
-from puffdata import fdata
-from puffdata import puffData
+from .retrieve import readField
+from .retrieve import filterField
+from .puffdata import fdata
+from .puffdata import puffData
 
 
 def getFilteredFields(h5fname, cfr=None, dfr=None, qAv = 0, qScale = None):
@@ -64,7 +64,7 @@ def writeFiltFields(fname, oname):
 #    ynr = yno+1:ny-yno+1
 
 
-    print np.shape(tfield)
+    print(np.shape(tfield))
 # numpy.shape(redField)
 
     h5o = tables.open_file(oname,'w') # open output file
@@ -144,14 +144,14 @@ if __name__ == '__main__':
     h5finame=sys.argv[1]
     if len(sys.argv) > 2:
       h5foname=sys.argv[2]
-      print "Output file specified as: " + sys.argv[2]
+      print("Output file specified as: " + sys.argv[2])
     else:
       filenamepieces=h5finame.split('_')
       dumpnoAndExt = filenamepieces[-1]
       bname = filenamepieces[0:-1]
       bname = '_'.join(bname)
       h5foname = bname + '_2nd_' + dumpnoAndExt
-      print "No output file specified - will be written to: " + h5foname
+      print("No output file specified - will be written to: " + h5foname)
       
     writeFiltFields(h5finame, h5foname)
 

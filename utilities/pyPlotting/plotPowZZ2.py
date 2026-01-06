@@ -15,11 +15,11 @@ from numpy import pi
 from numpy import arange
 import matplotlib.pyplot as plt
 import tables
-from puffdata import fdata
-from puffdata import puffData
-from retrieve import getPow
-from retrieve import getFileSlices
-from retrieve import getZData
+from .puffdata import fdata
+from .puffdata import puffData
+from .retrieve import getPow
+from .retrieve import getFileSlices
+from .retrieve import getZData
 
 def plotPowZZ2(basename, cfr=None, dfr=None):
 

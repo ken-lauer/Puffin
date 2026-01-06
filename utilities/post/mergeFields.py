@@ -84,7 +84,7 @@ thisNZ2={}
 for fname in fileList:
   t1=tables.open_file(fname,'r')
 #  g=re.match(simbase+"_"+"("+dataset+".*)_(\d+)"+dumpnoAndExt,fname)
-  g=re.match(simbase+"_"+"("+dataset+".*)_(\d+)_"+dumpnoAndExt,fname)
+  g=re.match(simbase+"_"+"("+dataset+r".*)_(\d+)_"+dumpnoAndExt,fname)
 
   if g:
     dsetname=g.groups()[0]

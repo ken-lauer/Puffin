@@ -17,9 +17,9 @@ import sys
 import numpy as np
 from numpy import arange
 import matplotlib.pyplot as plt
-from retrieve import getEnFromInt
-from retrieve import getIntFileSlices
-from retrieve import getZData
+from .retrieve import getEnFromInt
+from .retrieve import getIntFileSlices
+from .retrieve import getZData
 
 iTemporal = 0
 iPeriodic = 1

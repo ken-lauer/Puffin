@@ -18,11 +18,11 @@ import numpy as np
 from numpy import arange
 import matplotlib.pyplot as plt
 import tables
-from puffdata import fdata
-from puffdata import puffData
-from retrieve import getPowFromInt
-from retrieve import getIntFileSlices
-from retrieve import getZData
+from .puffdata import fdata
+from .puffdata import puffData
+from .retrieve import getPowFromInt
+from .retrieve import getIntFileSlices
+from .retrieve import getZData
 
 iTemporal = 0
 iPeriodic = 1

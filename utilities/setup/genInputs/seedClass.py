@@ -71,7 +71,7 @@ class sd:
         f.write('\n')
 
         f.write('&NSLIST\n')
-        f.write('nseeds = ' + '{:d}'.format(self.nseeds) + '\n')
+        f.write('nseeds = ' + f'{self.nseeds:d}' + '\n')
         f.write('dtype = ' + '\'' + self.sftype + '\'' + '\n')
         f.write('/\n')
 
@@ -80,15 +80,15 @@ class sd:
         f.write('\n')
 
         f.write('&SLIST\n')
-        f.write('freqf = ' + ', '.join(['{:.15E}'.format(ij) for ij in self.FreqFrac])  +  '\n')
-        f.write('ph_sh = ' + ', '.join(['{:.15E}'.format(ij) for ij in self.phshift])  +  '\n')
-        f.write('sA0_X = ' + ', '.join(['{:.15E}'.format(ij) for ij in self.pkx])  +  '\n')
-        f.write('sA0_Y = ' + ', '.join(['{:.15E}'.format(ij) for ij in self.pky])  +  '\n')
-        f.write('sSigmaF = ' + ', '.join(['{:.15E}'.format(ij) for ij in self.ssig])  +  '\n')
+        f.write('freqf = ' + ', '.join([f'{ij:.15E}' for ij in self.FreqFrac])  +  '\n')
+        f.write('ph_sh = ' + ', '.join([f'{ij:.15E}' for ij in self.phshift])  +  '\n')
+        f.write('sA0_X = ' + ', '.join([f'{ij:.15E}' for ij in self.pkx])  +  '\n')
+        f.write('sA0_Y = ' + ', '.join([f'{ij:.15E}' for ij in self.pky])  +  '\n')
+        f.write('sSigmaF = ' + ', '.join([f'{ij:.15E}' for ij in self.ssig])  +  '\n')
         f.write('qFlatTop = ' + ', '.join([torf(ij) for ij in self.qFlat]) + '\n')
-        f.write('meanZ2 = ' + ', '.join(['{:.15E}'.format(ij) for ij in self.meanz2]) + '\n')
+        f.write('meanZ2 = ' + ', '.join([f'{ij:.15E}' for ij in self.meanz2]) + '\n')
         f.write('qRndFj_G = ' + ', '.join([torf(ij) for ij in self.qFRoundEj]) + '\n')
-        f.write('sSigFj_G = ' + ', '.join(['{:.15E}'.format(ij) for ij in self.sigFEj]) + '\n')
+        f.write('sSigFj_G = ' + ', '.join([f'{ij:.15E}' for ij in self.sigFEj]) + '\n')
         f.write('qMatchS_G = ' + ', '.join([torf(ij) for ij in self.qmatchs2b]) + '\n')
 
         f.write('/\n')

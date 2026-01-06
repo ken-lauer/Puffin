@@ -102,7 +102,7 @@ steps_per_per = 30        # should be roughly 4-5* elms_per_wave
 # Below similar to CLARA parameters
 
 Er = 240e6            # Beam energy (reference particle)
-gamma = Er / ( (m_e * pow(c,2) / q_e) ) # Rel. factor
+gamma = Er / ( m_e * pow(c,2) / q_e ) # Rel. factor
 aw = 1.01               # PEAK wiggler parameter
 lambda_w = 0.0275        # Undulator period
 N_w = 200              # Number of undulator periods
@@ -146,7 +146,7 @@ sig_gamma = np.array([0.0004])      # Energy spread (relative to Er i.e. sig_gam
 
 Ej = np.array([240e6])
 eratio = Ej / Er # [ij / Er for ij in Ej] # Rel. factor
-gammaj = Ej / ( (m_e * pow(c,2) / q_e) ) # [ij / ( (m_e * pow(c,2) / q_e) ) for ij in Ej] # Rel. factor
+gammaj = Ej / ( m_e * pow(c,2) / q_e ) # [ij / ( (m_e * pow(c,2) / q_e) ) for ij in Ej] # Rel. factor
 emitx = np.array([1e-6 / gamma])       # Unnormalised Emittance in x
 emity = np.array([1e-6 / gamma])       # Unnormalised Emittance in y
 Q = np.array([0.1e-9])                # Charge
@@ -591,46 +591,46 @@ f.write(' wr_file                = ' + '\'' + wrFile + '\'' + '\n')
 
 # Field Mesh:
 
-f.write(' iNumNodesX             = ' + '{:d}'.format(int(math.floor(NNodesX))) + '\n')
-f.write(' iNumNodesY             = ' + '{:d}'.format(int(math.floor(NNodesY))) + '\n')
-f.write(' nodesPerLambdar        = ' + '{:d}'.format(int(math.floor(elms_per_wave)))  + '\n')
-f.write(' sFModelLengthX         = ' + '{:.15E}'.format(lsys_x) + '\n')
-f.write(' sFModelLengthY         = ' + '{:.15E}'.format(lsys_y) + '\n')
-f.write(' sFModelLengthZ2        = ' + '{:.15E}'.format(lsys_z2) + '\n')
-f.write(' iRedNodesX             = ' + '{:d}'.format(1) + '\n')
-f.write(' iRedNodesY             = ' + '{:d}'.format(1) + '\n')
-f.write(' sFiltFrac              = ' + '{:.15E}'.format(filtFrac) + '\n')
-f.write(' sDiffFrac              = ' + '{:.15E}'.format(diffFrac) + '\n')
-f.write(' sBeta                  = ' + '{:.15E}'.format(0.1) + '\n')
+f.write(' iNumNodesX             = ' + f'{int(math.floor(NNodesX)):d}' + '\n')
+f.write(' iNumNodesY             = ' + f'{int(math.floor(NNodesY)):d}' + '\n')
+f.write(' nodesPerLambdar        = ' + f'{int(math.floor(elms_per_wave)):d}'  + '\n')
+f.write(' sFModelLengthX         = ' + f'{lsys_x:.15E}' + '\n')
+f.write(' sFModelLengthY         = ' + f'{lsys_y:.15E}' + '\n')
+f.write(' sFModelLengthZ2        = ' + f'{lsys_z2:.15E}' + '\n')
+f.write(' iRedNodesX             = ' + f'{1:d}' + '\n')
+f.write(' iRedNodesY             = ' + f'{1:d}' + '\n')
+f.write(' sFiltFrac              = ' + f'{filtFrac:.15E}' + '\n')
+f.write(' sDiffFrac              = ' + f'{diffFrac:.15E}' + '\n')
+f.write(' sBeta                  = ' + f'{0.1:.15E}' + '\n')
 
 
 # Scaling parameters - sets up the frame
 
-f.write(' srho                   = ' + '{:.15E}'.format(rho) + '\n')
-f.write(' saw                    = ' + '{:.15E}'.format(aw) + '\n')
-f.write(' sgamma_r               = ' + '{:.15E}'.format(gamma) + '\n')
-f.write(' lambda_w               = ' + '{:.15E}'.format(lambda_w) + '\n')
+f.write(' srho                   = ' + f'{rho:.15E}' + '\n')
+f.write(' saw                    = ' + f'{aw:.15E}' + '\n')
+f.write(' sgamma_r               = ' + f'{gamma:.15E}' + '\n')
+f.write(' lambda_w               = ' + f'{lambda_w:.15E}' + '\n')
 f.write(' zundType               = ' + '\'' + undtype + '\'' + '\n')
 
 # 'base' wiggler - with lambda_w above. Ignored with a lattice file
 
-f.write(' lambda_w               = ' + '{:.15E}'.format(lambda_w) + '\n')
-f.write(' taper                  = ' + '{:.15E}'.format(taper) + '\n')
-f.write(' sKBetaXSF              = ' + '{:.15E}'.format(kbetax_SF) + '\n')
-f.write(' sKBetaYSF              = ' + '{:.15E}'.format(kbetay_SF) + '\n')
-f.write(' nPeriods               = ' + '{:d}'.format(int(N_w)) + '\n')
+f.write(' lambda_w               = ' + f'{lambda_w:.15E}' + '\n')
+f.write(' taper                  = ' + f'{taper:.15E}' + '\n')
+f.write(' sKBetaXSF              = ' + f'{kbetax_SF:.15E}' + '\n')
+f.write(' sKBetaYSF              = ' + f'{kbetay_SF:.15E}' + '\n')
+f.write(' nPeriods               = ' + f'{int(N_w):d}' + '\n')
 
 # integration/write options
-f.write(' stepsPerPeriod         = ' + '{:d}'.format(steps_per_per) + '\n')
-f.write(' sZ0                    = ' + '{:.15E}'.format(sZ0) + '\n')
-f.write(' iWriteNthSteps         = ' + '{:d}'.format(wrFreq_Full) + '\n')
-f.write(' iWriteIntNthSteps      = ' + '{:d}'.format(wrFreq_integrated) + '\n')
+f.write(' stepsPerPeriod         = ' + f'{steps_per_per:d}' + '\n')
+f.write(' sZ0                    = ' + f'{sZ0:.15E}' + '\n')
+f.write(' iWriteNthSteps         = ' + f'{wrFreq_Full:d}' + '\n')
+f.write(' iWriteIntNthSteps      = ' + f'{wrFreq_integrated:d}' + '\n')
 f.write(' /\n')
 
 f.close()
 
 
-print 'Main data file written to: ' + inputfile
+print('Main data file written to: ' + inputfile)
 
 
 #
@@ -646,7 +646,7 @@ f = open(beamfile, 'w')
 beam.wrbeam(f,1)
 f.close()
 
-print 'Beam file written to: ' + beamfile
+print('Beam file written to: ' + beamfile)
 
 #
 # seed file
@@ -664,7 +664,7 @@ if (seedfile != ''):
 
   f.close()
 
-  print 'Radiation seed file written to: ' + seedfile
+  print('Radiation seed file written to: ' + seedfile)
 
 
 

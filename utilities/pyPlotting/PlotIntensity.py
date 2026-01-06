@@ -18,7 +18,7 @@ from numpy.lib.scimath import *
 from cmath import sin, cos
 from scipy import *
 
-from puffdata import fdata
+from .puffdata import fdata
 import h5py
 
 iTemporal = 0
@@ -98,10 +98,10 @@ plt.imshow(intensity*mdata.vars.intensScale, cmap='jet', interpolation='bilinear
 import matplotlib.ticker as ticker
 
 def fmt(x, pos):
-    a, b = '{:.1e}'.format(x).split('e')
+    a, b = f'{x:.1e}'.split('e')
     b = int(b)
     #return r'${} {}$'.format(a, b)
-    return r'${} \times 10^{{{}}}$'.format(a, b)
+    return fr'${a} \times 10^{{{b}}}$'
 cbar=plt.colorbar(format=ticker.FuncFormatter(fmt),label=r'Intensity [$W/m^2$]')    
 #cbar=plt.colorbar(format=ticker.ScalarFormatter(useMathText=True),label='Intensity $W/m^2$')
 #cbar.set_label(family=font)

@@ -12,10 +12,10 @@ import numpy as np
 from numpy import pi
 from numpy import arange
 import matplotlib.pyplot as plt
-from retrieve import getMagPhase
-from retrieve import readField
-from puffdata import fdata
-from puffdata import puffData
+from .retrieve import getMagPhase
+from .retrieve import readField
+from .puffdata import fdata
+from .puffdata import puffData
 
 
 #t = np.linspace(-1, 1, 200, endpoint=False)

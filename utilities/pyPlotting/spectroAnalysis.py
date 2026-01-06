@@ -13,9 +13,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 #from matplotlib.pyplot import specgram
 from scipy import signal
-from puffdata import fdata
-from puffdata import puffData
-from retrieve import readField
+from .puffdata import fdata
+from .puffdata import puffData
+from .retrieve import readField
 
 #t = np.linspace(-1, 1, 200, endpoint=False)
 

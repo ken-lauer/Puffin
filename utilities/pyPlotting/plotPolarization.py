@@ -91,10 +91,10 @@ if len(sys.argv) == 4 or len(sys.argv) == 3:
   for yi in range(numpy.int((ny-1)/8.),numpy.int(7*(ny-1)/8.)+1,numpy.int(numpy.ceil((ny-1)/8.))):
     for xi in range(numpy.int((nx-1)/8.),numpy.int(7*(nx-1)/8.)+1,numpy.int(numpy.ceil((nx-1)/8.))):
       plt.subplot(gs[count])
-      mymax=max(numpy.max(numpy.abs((h5.root.aperp[xi,yi,:numpy.int(nz/2),0]))),numpy.max(numpy.abs(h5.root.aperp[xi,yi,:numpy.int(nz/2),1])))
+      mymax=max(numpy.max(numpy.abs(h5.root.aperp[xi,yi,:numpy.int(nz/2),0])),numpy.max(numpy.abs(h5.root.aperp[xi,yi,:numpy.int(nz/2),1])))
       plt.scatter(h5.root.aperp[xi,yi,:(numpy.int(nz/2)),0]/mymax,h5.root.aperp[xi,yi,:(numpy.int(nz/2)),1]/mymax)
       plt.axis([-1.2,1.2,-1.2,1.2])
-      plt.title("xi="+str(xi)+" yi="+str(yi)+ " norm={:1.1}".format(mymax))
+      plt.title("xi="+str(xi)+" yi="+str(yi)+ f" norm={mymax:1.1}")
     #plt.savefig("ExEy-"+str(xi)+"-"+str(yi)+".png")
       count+=1
   plt.savefig("ExEy.png")

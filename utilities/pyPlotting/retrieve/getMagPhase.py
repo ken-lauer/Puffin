@@ -78,7 +78,7 @@ def getMagPhase(Ex,nZ2,rho,syslen):
     invcosx = np.zeros(nZ2)
 
     for a in np.arange(nZ2):
-        if (Ex[a]/magxrms[a] < -1 ) or ((Ex[a]/magxrms[a] > 1 )):
+        if (Ex[a]/magxrms[a] < -1 ) or (Ex[a]/magxrms[a] > 1 ):
             invcosx[a] = 0
         else:
             invcosx[a]=np.arccos(Ex[a]/magxrms[a])

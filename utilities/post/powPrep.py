@@ -10,7 +10,7 @@ This should write VizSchema file with aggregated power output
 import numpy,tables,glob,os,sys
 
 qScale = 0
-print("scaling is qscale", str(qScale))
+print(("scaling is qscale", str(qScale)))
 
 iTemporal = 0
 iPeriodic = 1
@@ -158,7 +158,7 @@ if minZZ is not None:
 
 fieldData=numpy.zeros((numSpatialPoints, numTimes))
 fieldNormData=numpy.zeros((numSpatialPoints, numTimes))
-zData=numpy.zeros((numTimes))
+zData=numpy.zeros(numTimes)
 fieldCount=0
 
 

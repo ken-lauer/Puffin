@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Created on Fri Apr 27 10:46:35 2018
 
@@ -12,7 +11,7 @@ mpl.use('Agg')
 import sys
 import glob
 import os
-from puffdata import fdata
+from .puffdata import fdata
 #import h5py
 import matplotlib.ticker as mtick
 import matplotlib.ticker as ticker
@@ -127,10 +126,10 @@ def plot_intensity(file_name_in):
 
     
     def fmt(x, pos):
-        a, b = '{:.1e}'.format(x).split('e')
+        a, b = f'{x:.1e}'.split('e')
         b = int(b)
         #return r'${} {}$'.format(a, b)
-        return r'${} \times 10^{{{}}}$'.format(a, b)
+        return fr'${a} \times 10^{{{b}}}$'
     cbar=plt.colorbar(format=ticker.FuncFormatter(fmt),label=r'Intensity [$W/m^2$]')    
     #cbar=plt.colorbar(format=ticker.ScalarFormatter(useMathText=True),label='Intensity $W/m^2$')
     #cbar.set_label(family=font)

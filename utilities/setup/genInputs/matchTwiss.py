@@ -16,14 +16,14 @@ def getMat(b1, a1, b2, a2):
     to the new Twiss parameters
     """
 
-    f1 = np.sqrt(b1*b2)
+    f1 = np.sqrt(b1 * b2)
 
     M11 = b2 / f1
-    M12 = 0.
-    M21 = (a1-a2) / f1
+    M12 = 0.0
+    M21 = (a1 - a2) / f1
     M22 = b1 / f1
 
-    mat = np.array([[M11,M12],[M21,M22]])
+    mat = np.array([[M11, M12], [M21, M22]])
 
     return mat
 
@@ -35,13 +35,10 @@ def MM(x, px, M):
 
     ap = np.array([x, px])
     apn = np.matmul(M, ap)
-    xn = apn[0,:]
-    pxn = apn[1,:]
+    xn = apn[0, :]
+    pxn = apn[1, :]
 
     return xn, pxn
-
-
-    
 
 
 def matchT1(x, px, b1, a1, b2, a2):
@@ -54,8 +51,6 @@ def matchT1(x, px, b1, a1, b2, a2):
     x2, px2 = MM(x, px, M)
 
     return x2, px2
-
-
 
 
 def matchTwiss(x, px, y, py, TX1, TX2, TY1, TY2):

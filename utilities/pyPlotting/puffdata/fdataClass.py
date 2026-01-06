@@ -3,27 +3,25 @@
 # License: BSD-3-Clause
 
 """
-This file is part of the example post-processing tools for Puffin, a 
-multi-frequency FEL code absent of the averaging / SVEA approximations.  It 
+This file is part of the example post-processing tools for Puffin, a
+multi-frequency FEL code absent of the averaging / SVEA approximations.  It
 contains the object definition for opening and retreiving the metadata
 from the Puffin output data files.
 """
 
-import sys, glob, os
 import numpy as np
-from numpy import pi
-from numpy import arange
 import tables
+
 from .puffDataClass import puffData
 
 
 class fdata:
     def __init__(self, fname):
         self.h5fname = fname
-        
-        h5f = tables.open_file(fname, mode='r')
-        self.vars = puffData()        
-        
+
+        h5f = tables.open_file(fname, mode="r")
+        self.vars = puffData()
+
         self.vars.rho = h5f.root.runInfo._v_attrs.rho
         self.vars.gamma0 = h5f.root.runInfo._v_attrs.gamma_r
         self.vars.au = h5f.root.runInfo._v_attrs.aw
@@ -37,7 +35,6 @@ class fdata:
 
         self.vars.qscale = h5f.root.runInfo._v_attrs.iScale
         self.vars.iMesh = h5f.root.runInfo._v_attrs.fieldMesh
-
 
         self.vars.dxbar = h5f.root.runInfo._v_attrs.sLengthOfElmX
         self.vars.dybar = h5f.root.runInfo._v_attrs.sLengthOfElmY
@@ -56,27 +53,37 @@ class fdata:
         self.vars.zloc = h5f.root.runInfo._v_attrs.zLocal
         self.vars.step = h5f.root.runInfo._v_attrs.iCsteps
 
-
         self.vars.transArea = h5f.root.runInfo._v_attrs.transArea
         self.vars.transAreaSI = h5f.root.runInfo._v_attrs.transAreaSI
-        
+
         self.vars.q1d = 0
 
-        if (self.vars.nx==1):
-            if (self.vars.ny==1):
-              self.vars.q1d = 1
-        
-        self.vars.powScale = self.vars.lg * self.vars.lc * self.vars.c0 * self.vars.eps0 \
-                              * np.square((self.vars.gamma0 * self.vars.me * \
-                              np.square(self.vars.c0) ) / (self.vars.qe * \
-                              self.vars.kappa * self.vars.lg ))
+        if self.vars.nx == 1:
+            if self.vars.ny == 1:
+                self.vars.q1d = 1
 
-        self.vars.intensScale = self.vars.c0 * self.vars.eps0 * \
-                          np.square((self.vars.gamma0 * self.vars.me * np.square(self.vars.c0) ) \
-                          / (self.vars.qe * self.vars.kappa * self.vars.lg ))
+        self.vars.powScale = (
+            self.vars.lg
+            * self.vars.lc
+            * self.vars.c0
+            * self.vars.eps0
+            * np.square(
+                (self.vars.gamma0 * self.vars.me * np.square(self.vars.c0))
+                / (self.vars.qe * self.vars.kappa * self.vars.lg)
+            )
+        )
 
+        self.vars.intensScale = (
+            self.vars.c0
+            * self.vars.eps0
+            * np.square(
+                (self.vars.gamma0 * self.vars.me * np.square(self.vars.c0))
+                / (self.vars.qe * self.vars.kappa * self.vars.lg)
+            )
+        )
 
-        self.vars.fieldScale = ((self.vars.gamma0 * self.vars.me * np.square(self.vars.c0) ) \
-                          / (self.vars.qe * self.vars.kappa * self.vars.lg ))
-        
+        self.vars.fieldScale = (
+            self.vars.gamma0 * self.vars.me * np.square(self.vars.c0)
+        ) / (self.vars.qe * self.vars.kappa * self.vars.lg)
+
         h5f.close()

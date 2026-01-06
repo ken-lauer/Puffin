@@ -10,20 +10,15 @@ propagation distance.
 """
 
 import sys
-import numpy as np
-from numpy import pi
-from numpy import arange
+
 import matplotlib.pyplot as plt
-import tables
+import numpy as np
+
 from .puffdata import fdata
-from .puffdata import puffData
-from .retrieve import getPowFromInt
-from .retrieve import getIntFileSlices
-from .retrieve import getZData
+from .retrieve import getIntFileSlices, getPowFromInt, getZData
+
 
 def plotPowZZ2(basename):
-
-
     filelist = getIntFileSlices(basename)
     print(filelist)
 
@@ -31,64 +26,69 @@ def plotPowZZ2(basename):
 
     sampleFreq = 1.0 / mdata.vars.dz2
 
-    lenz2 = (mdata.vars.nz2-1) * mdata.vars.dz2
-    z2axis = (np.arange(0,mdata.vars.nz2)) * mdata.vars.dz2 * mdata.vars.lc * 1.e6
-    
-    xaxis = (np.arange(0,mdata.vars.nx)) * mdata.vars.dxbar
-    yaxis = (np.arange(0,mdata.vars.ny)) * mdata.vars.dybar
+    lenz2 = (mdata.vars.nz2 - 1) * mdata.vars.dz2
+    z2axis = (np.arange(0, mdata.vars.nz2)) * mdata.vars.dz2 * mdata.vars.lc * 1.0e6
+
+    xaxis = (np.arange(0, mdata.vars.nx)) * mdata.vars.dxbar
+    yaxis = (np.arange(0, mdata.vars.ny)) * mdata.vars.dybar
 
     fcount = 0
-    
+
     pows = np.zeros(len(filelist))
     zData = np.zeros(len(filelist))
 
-#    if (mdata.vars.iMesh == iPeriodic):
-#        gAv = 1  #  for average...
-#    else:
-#        gAv = 2  #  for peak...
+    #    if (mdata.vars.iMesh == iPeriodic):
+    #        gAv = 1  #  for average...
+    #    else:
+    #        gAv = 2  #  for peak...
 
-    gAv = 0 # for temporal (no cycle averaging)
+    gAv = 0  # for temporal (no cycle averaging)
 
-    pows = np.ones([len(filelist), mdata.vars.nz2]);
-    powsN = np.ones([len(filelist), mdata.vars.nz2]);
+    pows = np.ones([len(filelist), mdata.vars.nz2])
+    powsN = np.ones([len(filelist), mdata.vars.nz2])
 
     for ij in filelist:
-        pows[-1-fcount,:] = getPowFromInt(ij, irtype = gAv, qScale = 0)
-        mv = np.max(pows[-1-fcount,:])
-        if (mv != 0.):
-            powsN[-1-fcount,:] = pows[-1-fcount,:] / np.max(pows[-1-fcount,:])
+        pows[-1 - fcount, :] = getPowFromInt(ij, irtype=gAv, qScale=0)
+        mv = np.max(pows[-1 - fcount, :])
+        if mv != 0.0:
+            powsN[-1 - fcount, :] = pows[-1 - fcount, :] / np.max(pows[-1 - fcount, :])
         else:
-            powsN[-1-fcount,:] = 0.
+            powsN[-1 - fcount, :] = 0.0
         zData[fcount] = getZData(ij)
         fcount += 1
-#        print fcount
+    #        print fcount
 
-#    plotLab = 'SI Power'
-#    axLab = 'Power (W)'
+    #    plotLab = 'SI Power'
+    #    axLab = 'Power (W)'
 
-#    if (mdata.vars.iMesh == iPeriodic):
-#        plotLab = 'SI Power'
-#        axLab = 'Power (W)'
-#    else:
-#        plotLab = 'SI Peak Power'
-    axLab = 'Power (W)'
-
+    #    if (mdata.vars.iMesh == iPeriodic):
+    #        plotLab = 'SI Power'
+    #        axLab = 'Power (W)'
+    #    else:
+    #        plotLab = 'SI Peak Power'
+    axLab = "Power (W)"
 
     ax1 = plt.subplot(111)
-    im = plt.imshow(powsN, aspect='auto', interpolation='bilinear', \
-        extent=[z2axis[0], z2axis[-1], zData[0], zData[-1]])
-    ax1.set_title('Power')
-    plt.xlabel(r'$ct-z (\mu m)$')
-    plt.ylabel('z (m)')
+    im = plt.imshow(
+        powsN,
+        aspect="auto",
+        interpolation="bilinear",
+        extent=[z2axis[0], z2axis[-1], zData[0], zData[-1]],
+    )
+    ax1.set_title("Power")
+    plt.xlabel(r"$ct-z (\mu m)$")
+    plt.ylabel("z (m)")
 
     cb = plt.colorbar(im)
 
     plt.tight_layout()
-    #plt.legend()
+    # plt.legend()
 
     opname = basename + "-powerALL.png"
 
     plt.savefig(opname)
+
+
 #    plt.show()
 
 
@@ -96,8 +96,7 @@ def plotPowZZ2(basename):
 #    h5f.close()
 
 
-if __name__ == '__main__':
-
+if __name__ == "__main__":
     basename = sys.argv[1]
 
     plotPowZZ2(basename)
